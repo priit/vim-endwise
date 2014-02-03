@@ -22,7 +22,7 @@ augroup endwise " {{{1
         \ let b:endwise_pattern = '^\(.*=\)\?\s*\zs\%(case\|cond\|bc\|lc\|inlist\|inbits\|if\|unless\|try\|receive\|function\|fn\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
         \ let b:endwise_syngroups = 'elixirKeyword'
   autocmd FileType ruby
-        \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
+        \ let b:endwise_addition = '\=submatch(0)=="{" ? "}\n" : "end\n"' |
         \ let b:endwise_words = 'module,class,def,if,unless,case,while,until,begin,do' |
         \ let b:endwise_pattern = '^\(.*=\)\?\s*\zs\%(module\|class\|def\|if\|unless\|case\|while\|until\|for\|\|begin\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
           \ let b:endwise_syngroups = 'rubyModule,rubyClass,rubyDefine,rubyControl,rubyConditional,rubyRepeat'
@@ -104,7 +104,7 @@ function! s:crend(always)
   let col  = match(getline(lnum),beginpat) + 1
   let word  = matchstr(getline(lnum),beginpat)
   let endword = substitute(word,'.*',b:endwise_addition,'')
-  let y = n.endword."\<C-O>O"
+  let y = n.endword."\r"."\<up>"."\<C-O>O"
   let endpat = '\w\@<!'.endword.'\w\@!'
   if a:always
     return y
