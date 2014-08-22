@@ -22,7 +22,7 @@ augroup endwise " {{{1
         \ let b:endwise_pattern = '^\(.*=\)\?\s*\zs\%(case\|cond\|bc\|lc\|inlist\|inbits\|if\|unless\|try\|receive\|function\|fn\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
         \ let b:endwise_syngroups = 'elixirKeyword'
   autocmd FileType ruby
-        \ let b:endwise_addition = '\=submatch(0)=="{" ? "}\n" : "end\n"' |
+        \ let b:endwise_addition = '\=submatch(0)=="{" ? "}" : "end"' |
         \ let b:endwise_words = 'module,class,def,if,unless,case,while,until,begin,do' |
         \ let b:endwise_pattern = '^\(.*=\)\?\s*\zs\%(module\|class\|def\|if\|unless\|case\|while\|until\|for\|\|begin\)\>\%(.*[^.:@$]\<end\>\)\@!\|\<do\ze\%(\s*|.*|\)\=\s*$' |
           \ let b:endwise_syngroups = 'rubyModule,rubyClass,rubyDefine,rubyControl,rubyConditional,rubyRepeat'
